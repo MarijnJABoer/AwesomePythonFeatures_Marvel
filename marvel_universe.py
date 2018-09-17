@@ -11,6 +11,9 @@ class MarvelCharacter:
         self.birthyear = birthyear
         self.sex = sex
 
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self._name}, birthyear: {self.birthyear})"
+
     def says(self, words):
         return f"{self._name} says {words}"
 
@@ -36,6 +39,10 @@ class Hero(MarvelCharacter):
             "Asgardian Royal Family": True,
             "Avengers": True,
             "Revengers": False}
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self._name}, birthyear: {self.birthyear}, alias: {self.alias})"
+
 
     @staticmethod
     def fight_outcome(fight):
@@ -76,6 +83,9 @@ class Villain(MarvelCharacter):
         if affiliation is not None:
             self.affiliation = affiliation
 
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self._name}, birthyear: {self.birthyear}, villain to: {self.villain_to})"
+
     @classmethod
     def ultron(cls):
         return cls("Ultron", 2015, "Male", "Android", "Avengers", None)
@@ -93,17 +103,29 @@ class MinorCharacter(MarvelCharacter):
     def __init__(self, name: str, birthyear: int, sex: str, species: str, related_to: str = None):
         super().__init__(name, birthyear, sex)
         self.species = species
-        self.related_to = related_to
 
+        if related_to is not None:
+            self.related_to = related_to
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self._name}, birthyear: {self.birthyear}, related to: {self.related_to})"
 
 if __name__ is "__main__":
     iron_man = MarvelCharacter("Anthony Edward Stark", 1970, "Male")
+    print("Iron man: ", iron_man)
     spider_man = Hero(name="Peter Benjamin Parker", birthyear=2001, sex="Male",
                       species="Human", alias="Spider-Man", weapon=("Web-Shooters", "Mechanical Device"))
+    print("Spiderman: ", spider_man)
     stan_lee = spider_man.StanLee()
+    print("Stan Lee: ", stan_lee)
 
-    ultron = Villain.ultron
-    whiplash = Villain.whiplash
-    spider_man = Hero.spider_man
-    iron_man = Hero.iron_man
-    hulk = Hero.hulk
+    ultron = Villain.ultron()
+    print("Ultron: ", ultron)
+    whiplash = Villain.whiplash()
+    print("Whiplash: ", whiplash)
+    spider_man = Hero.spider_man()
+    print("Spiderman: ", spider_man)
+    iron_man = Hero.iron_man()
+    print("Iron man: ", iron_man)
+    hulk = Hero.hulk()
+    print("Hulk: ", hulk)
