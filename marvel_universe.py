@@ -6,7 +6,7 @@ class MarvelCharacter:
     # class atribute
     location = "Earth"
 
-    def __init__(self, name, birthyear, sex):
+    def __init__(self, name: str, birthyear: int, sex: str):
         self._name = name
         self.birthyear = birthyear
         self.sex = sex
@@ -24,7 +24,7 @@ class Hero(MarvelCharacter):
     Create a Marvel hero
     """
 
-    def __init__(self, name, birthyear, sex, species, alias, weapon=None):
+    def __init__(self, name: str, birthyear: int, sex: str, species: str, alias: str, weapon: tuple = None):
         super().__init__(name, birthyear, sex)
         self.species = species
         self.alias = alias
@@ -63,13 +63,12 @@ class Hero(MarvelCharacter):
         return cls("Robert Bruce Banner", 1969, "Male", "Human", "The Incredible Hulk", ("Stretchable Pants", "Clothing"))
 
 
-
 class Villain(MarvelCharacter):
     """
     Creates a Marvel villain
     """
 
-    def __init__(self, name, birthyear, sex, species, villain_to, affiliation=None):
+    def __init__(self, name: str, birthyear: int, sex: str, species: str, villain_to: str, affiliation: str = None):
         super().__init__(name, birthyear, sex)
         self.species = species
         self.villain_to = villain_to
@@ -91,7 +90,7 @@ class MinorCharacter(MarvelCharacter):
     Creates a Marvel minor character
     """
 
-    def __init__(self, name, birthyear, sex, species, related_to=None):
+    def __init__(self, name: str, birthyear: int, sex: str, species: str, related_to: str = None):
         super().__init__(name, birthyear, sex)
         self.species = species
         self.related_to = related_to
@@ -99,7 +98,8 @@ class MinorCharacter(MarvelCharacter):
 
 if __name__ is "__main__":
     iron_man = MarvelCharacter("Anthony Edward Stark", 1970, "Male")
-    spider_man = Hero(name="Peter Benjamin Parker", birthyear=2001, sex="Male", species="Human", alias="Spider-Man", weapon=("Web-Shooters", "Mechanical Device"))
+    spider_man = Hero(name="Peter Benjamin Parker", birthyear=2001, sex="Male",
+                      species="Human", alias="Spider-Man", weapon=("Web-Shooters", "Mechanical Device"))
     stan_lee = spider_man.StanLee()
 
     ultron = Villain.ultron
